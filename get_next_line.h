@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:42 by zqouri            #+#    #+#             */
-/*   Updated: 2023/12/07 21:00:52 by zqouri           ###   ########.fr       */
+/*   Updated: 2023/12/30 06:21:21 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@
 # include <string.h>
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(char *src);
 char	*ft_strjoin(char *s1, char *s2);
-char	*readded(char *line, int fd);
-char	*get(char *line);
-void	*ft_calloc(size_t count, size_t size);
-void	ft_bzero(void *p, size_t size);
-char	*rest_line(char *line);
+char	*ft_strchr(const char *s, int c);
+char	*get_line_m(char *line);
+size_t	ft_strlen(const char *s);
 #endif
