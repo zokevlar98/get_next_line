@@ -6,38 +6,11 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:00:06 by zqouri            #+#    #+#             */
-/*   Updated: 2023/12/31 00:57:15 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/01 23:02:26 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-//void	ft_bzero(void *p, size_t size)
-//{
-//	unsigned char	*ptr;
-//	size_t			i;
-
-//	i = 0;
-//	ptr = (unsigned char *)p;
-//	while (i < size)
-//	{
-//		ptr[i] = 0;
-//		i++;
-//	}
-//}
-
-//void	*ft_calloc(size_t count, size_t size)
-//{
-//	void	*ptr;
-//	int		i;
-
-//	i = 0;
-//	ptr = malloc(count * size);
-//	if (!ptr)
-//		return (NULL);
-//	ft_bzero(ptr, (size * count));
-//	return (ptr);
-//}
 
 size_t	ft_strlen(const char *s)
 {
@@ -70,7 +43,7 @@ char	*ft_strchr(const char *s, int c)
 		return (p + i);
 	return (NULL);
 }
-/*si mon static varriable est NULL on alloc le vide*/
+
 char	*ft_strdup(char *src)
 {
 	int		i;
@@ -100,8 +73,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*str;
 	size_t	size;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	if (!s1)
 		s1 = ft_strdup("");
 	if (!s2)
@@ -110,16 +83,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = (char *)malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (NULL);
-	while (s1[i])
-	{
+	while (s1[++i])
 		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
+	while (s2[++j])
 	{
 		str[i] = s2[j];
 		i++;
-		j++;
 	}
 	str[i] = '\0';
 	return (free(s1), str);

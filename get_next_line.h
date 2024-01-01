@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:42 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/01 22:53:03 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/01 22:56:23 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE	10
+#define BUFFER_SIZE	10
 
 # endif
 
