@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:32 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/01 22:42:10 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/01 23:20:45 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,7 @@ char	*get_line_m(char *line)
 	i = 0;
 	while (line[i] && line[i] != '\n')
 		i++;
-	//if (line[i] == '\n')
 	str = (char *)malloc(sizeof(char) * (i + 2));
-	//if (line[i] == '\0')
-	//	str = (char *)malloc(sizeof(char) * (i + 1));
-	//else
-	//	str = NULL;
 	if (!str)
 		return (NULL);
 	i = -1;
@@ -73,52 +68,37 @@ char	*get_line_m(char *line)
 char	*get_next_line(int fd)
 {
 	static char	*line;
-	char	*buffer;
-	int		char_read;
-	char	*str;
-	
+	char		*buffer;
+	int			char_read;
+	char		*str;
+
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0)
-	{
-		free(line);
-		line = NULL;
-		return (NULL);
-	}
+		return (free(line), line = NULL, NULL);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE) + 1);
 	if (!buffer)
+		return (free(line), line = NULL, free(buffer), NULL);
+	while (!ft_strchr(line, '\n'))
 	{
-		free(line);
-		line = NULL;
-		return (free(buffer), NULL);
-	}
-	while (1)
-	{
-		if (!ft_strchr(line, '\n'))
+		char_read = read(fd, buffer, BUFFER_SIZE);
+		if (char_read == 0)
 		{
-			char_read = read(fd, buffer, BUFFER_SIZE);
-			if (char_read == 0)
+			if (line && !*line)
 			{
-				if (line && !*line)
-				{
-					free(line);
-					str = NULL;
-				}
-				else
-					str = line;
-				line = NULL;
-				return (free(buffer), str);
+				free(line);
+				str = NULL;
 			}
-			if (char_read == -1)
-			{
-				line = NULL;
-				return (free(buffer), NULL);
-			}
-			buffer[char_read] = '\0';
-			line = ft_strjoin(line, buffer);
+			else
+				str = line;
+			line = NULL;
+			return (free(buffer), str);
 		}
-		//if (!line)
-		//	return (NULL);
-		if (ft_strchr(line, '\n'))
-			break;
+		if (char_read == -1)
+		{
+			line = NULL;
+			return (free(buffer), NULL);
+		}
+		buffer[char_read] = '\0';
+		line = ft_strjoin(line, buffer);
 	}
 	str = get_line_m(line);
 	if (!str || !str[0])
@@ -135,7 +115,7 @@ char	*get_next_line(int fd)
 //	int i = 0;
 //	fd = open("test3.txt",O_RDONLY);
 //	char *str;
-	
+
 //	while (i < 5)
 //	{
 //		str = get_next_line(fd);
