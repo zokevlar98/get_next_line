@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:42 by zqouri            #+#    #+#             */
-/*   Updated: 2023/12/30 06:21:21 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/01 22:53:03 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>
+# include <limits.h>
 
 char	*get_next_line(int fd);
 char	*ft_strdup(char *src);

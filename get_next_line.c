@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:32 by zqouri            #+#    #+#             */
-/*   Updated: 2023/12/30 07:04:04 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/01 22:42:10 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,19 @@ char	*get_next_line(int fd)
 	int		char_read;
 	char	*str;
 	
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0)
+	{
+		free(line);
+		line = NULL;
+		return (NULL);
+	}
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE) + 1);
 	if (!buffer)
+	{
+		free(line);
+		line = NULL;
 		return (free(buffer), NULL);
+	}
 	while (1)
 	{
 		if (!ft_strchr(line, '\n'))
@@ -87,7 +97,13 @@ char	*get_next_line(int fd)
 			char_read = read(fd, buffer, BUFFER_SIZE);
 			if (char_read == 0)
 			{
-				str = line;
+				if (line && !*line)
+				{
+					free(line);
+					str = NULL;
+				}
+				else
+					str = line;
 				line = NULL;
 				return (free(buffer), str);
 			}
@@ -116,12 +132,15 @@ char	*get_next_line(int fd)
 //int main(void)
 //{
 //	int	fd;
+//	int i = 0;
 //	fd = open("test3.txt",O_RDONLY);
 //	char *str;
 	
-//	while ((str = get_next_line(fd)))
+//	while (i < 5)
 //	{
+//		str = get_next_line(fd);
 //		printf("buffer->%s",str);
+//		i++;
 //		free(str);
 //	}
 //}
