@@ -1,0 +1,4 @@
+Here are the bonus part requirements:
+• Develop get_next_line() using only one static variable.
+• Your get_next_line() can manage multiple file descriptors at the same time.
+For example, if you can read from the file descriptors 3, 4 and 5, you should be

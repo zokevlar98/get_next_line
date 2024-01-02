@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 18:53:32 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/02 04:21:30 by zqouri           ###   ########.fr       */
+/*   Created: 2024/01/02 03:01:33 by zqouri            #+#    #+#             */
+/*   Updated: 2024/01/02 06:24:27 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*rest_line(char *line)
 {
@@ -94,32 +94,44 @@ char	*readed(int fd, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*line[OPEN_MAX];
 	char		*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0)
-		return (free(line), line = NULL, NULL);
-	line = readed(fd, line);
-	str = get_line_m(line);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line[fd], 0) < 0
+		|| fd > OPEN_MAX)
+		return (free(line[fd]), line[fd] = NULL, NULL);
+	line[fd] = readed(fd, line[fd]);
+	str = get_line_m(line[fd]);
 	if (!str || !str[0])
-		return (free(line), NULL);
-	line = rest_line(line);
-	if (!line)
+		return (free(line[fd]), NULL);
+	line[fd] = rest_line(line[fd]);
+	if (!line[fd])
 		return (NULL);
 	return (str);
 }
 
 //int main(void)
 //{
-//	int	fd;
-//	fd = open("test3.txt",O_RDONLY);
+//	int	fd1;
+//	int	fd2;
+//	fd1 = open("test3.txt",O_RDONLY);
+//	fd2 = open("test4.txt",O_RDONLY);
 //	char *str;
 //	while (1)
 //	{
-//		str = get_next_line(fd);
+//		str = get_next_line(fd1);
 //		if (!str)
 //			break;
-//		printf("buffer------->%s",str);
+//		printf("buffer1------->%s",str);
+//		free(str);
+//	}
+//	str = NULL;
+//	while (1)
+//	{
+//		str = get_next_line(fd2);
+//		if (!str)
+//			break;
+//		printf("buffer2------->%s",str);
 //		free(str);
 //	}
 //}
