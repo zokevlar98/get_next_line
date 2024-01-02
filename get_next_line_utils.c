@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:00:06 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/01 23:02:26 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/02 02:40:44 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = -1;
 	j = -1;
 	if (!s1)
+	{
 		s1 = ft_strdup("");
+		if (!s1)
+			return (NULL);
+	}
 	if (!s2)
 		return (s1);
 	size = ft_strlen(s1) + ft_strlen(s2);
@@ -86,10 +90,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s1[++i])
 		str[i] = s1[i];
 	while (s2[++j])
-	{
-		str[i] = s2[j];
-		i++;
-	}
+		str[i++] = s2[j];
 	str[i] = '\0';
 	return (free(s1), str);
 }
