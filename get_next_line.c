@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:32 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/02 04:21:30 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/02 10:06:59 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*readed(int fd, char *line)
 
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE) + 1);
 	if (!buffer)
-		return (free(line), line = NULL, free(buffer), NULL);
+		return (free(line), line = NULL, NULL);
 	while (!ft_strchr(line, '\n'))
 	{
 		char_read = read(fd, buffer, BUFFER_SIZE);
@@ -97,22 +97,21 @@ char	*get_next_line(int fd)
 	static char	*line;
 	char		*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, line, 0) < 0
+		|| BUFFER_SIZE >= INT_MAX)
 		return (free(line), line = NULL, NULL);
 	line = readed(fd, line);
 	str = get_line_m(line);
 	if (!str || !str[0])
 		return (free(line), NULL);
 	line = rest_line(line);
-	if (!line)
-		return (NULL);
 	return (str);
 }
 
 //int main(void)
 //{
 //	int	fd;
-//	fd = open("test3.txt",O_RDONLY);
+//	fd = open("ll",O_RDONLY);
 //	char *str;
 //	while (1)
 //	{
