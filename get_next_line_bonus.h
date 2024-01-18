@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 03:03:26 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/02 04:45:45 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/18 18:40:16 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 #  define BUFFER_SIZE	10
 # endif
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <errno.h>
 # include <fcntl.h>
 # include <string.h>
 # include <limits.h>

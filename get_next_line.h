@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:42 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/02 08:18:38 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/18 18:40:00 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1000000
+#  define BUFFER_SIZE	10
 # endif
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <errno.h>
 # include <fcntl.h>
 # include <string.h>
 # include <limits.h>

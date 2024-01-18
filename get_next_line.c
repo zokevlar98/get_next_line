@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:53:32 by zqouri            #+#    #+#             */
-/*   Updated: 2024/01/02 10:06:59 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/01/18 18:39:44 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,18 +107,3 @@ char	*get_next_line(int fd)
 	line = rest_line(line);
 	return (str);
 }
-
-//int main(void)
-//{
-//	int	fd;
-//	fd = open("ll",O_RDONLY);
-//	char *str;
-//	while (1)
-//	{
-//		str = get_next_line(fd);
-//		if (!str)
-//			break;
-//		printf("buffer------->%s",str);
-//		free(str);
-//	}
-//}
